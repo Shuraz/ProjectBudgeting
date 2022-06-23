@@ -2,7 +2,7 @@
     import projectStore from "./project-store"
     export let id;
     export let name="";
-    export let price;
+    export let price=5;
     $:mode = id?"Edit":"Add"
     $:canSubmit= price>0 && name!=="";
     console.log(Boolean(canSubmit))
@@ -12,6 +12,9 @@
         }
         if(mode==='Add'){
             projectStore.add(name,price)
+        }
+        if(mode==='Edit'){
+           projectStore.edit(id,name,price)
         }
         price="";
         name="";

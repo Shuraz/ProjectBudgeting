@@ -18,6 +18,22 @@ const add = (name, price) => {
     return [item, ...items];
   });
 };
+const edit=(id,name,price)=>{
+  ProjectStore.update((items)=>{
+    const index= items.findIndex((i)=>i.id===id);
+    items[index].name=name;
+    items[index].price=price;
+    return items;
+  });
+ 
+};
+
+const deleteItem=(id)=>{
+  ProjectStore.update((items)=>{
+    const newItems= items.filter((item)=>item.id!==id);
+    return newItems;
+  })
+}
 
 ProjectStore.subscribe((items) => {
   console.log(items);
@@ -28,4 +44,6 @@ ProjectStore.subscribe((items) => {
 export default {
   subscribe: ProjectStore.subscribe,
   add,
+  edit,
+  deleteItem,
 };

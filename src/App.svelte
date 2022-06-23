@@ -1,7 +1,15 @@
 <script>
     import Form from "./Form.svelte"
     import Table from "./Table.svelte"
-</script>
+    let id;
+    let name="";
+    let price=5;
+    const editTable=(e)=>{
+        // console.log(e.detail);
+        ({id,name,price} = e.detail)
+      
+    }
+    </script>
 <style>
     main{
     flex: 1;
@@ -14,7 +22,7 @@
 </style>
 <main>
     <h1>Project Budgeting</h1>
-    <Form/>
-    <Table/>
+    <Form bind:id bind:name bind:price/>
+    <Table on:edit={editTable}/>
 
 </main>
